@@ -3,6 +3,10 @@ import json
 import random
 import pandas as pd
 from pathlib import Path
+from database import init_db, get_db, MenuItem, get_all_menu_items, add_menu_item
+
+# データベース初期化
+init_db()
 
 # ページの設定
 st.set_page_config(
@@ -16,42 +20,52 @@ def load_css():
     css_file = Path("styles/styles.css").read_text()
     st.markdown(f"<style>{css_file}</style>", unsafe_allow_html=True)
 
-# メニューデータの読み込み
-@st.cache_data
-def load_menu_data():
-    with open("data/menu.json", "r", encoding="utf-8") as f:
-        return json.load(f)["menu_items"]
+# 初回のみメニューデータをデータベースに登録
+def load_initial_data():
+    if "initial_load" not in st.session_state:
+        db = next(get_db())
+        # 既存のメニューデータを確認
+        existing_items = get_all_menu_items(db)
+        if not existing_items:
+            # JSONからデータを読み込んでデータベースに登録
+            with open("data/menu.json", "r", encoding="utf-8") as f:
+                menu_data = json.load(f)
+                for item in menu_data["menu_items"]:
+                    add_menu_item(db, item)
+        st.session_state.initial_load = True
 
 # 予算内のメニューをランダムに選択
 def select_random_menu(budget, menu_items):
-    available_items = [item for item in menu_items if item["price"] <= budget]
+    available_items = [item for item in menu_items if item.price <= budget]
     if not available_items:
         return None
-    
+
     selected_items = []
     remaining_budget = budget
-    
+
     while remaining_budget > 0:
-        affordable_items = [item for item in available_items if item["price"] <= remaining_budget]
+        affordable_items = [item for item in available_items if item.price <= remaining_budget]
         if not affordable_items:
             break
-        
+
         item = random.choice(affordable_items)
         selected_items.append(item)
-        remaining_budget -= item["price"]
-    
+        remaining_budget -= item.price
+
     return selected_items
 
 # メインアプリケーション
 def main():
     load_css()
-    
+    load_initial_data()
+
     # ヘッダー
     st.markdown('<h1 class="main-header">サイゼリヤ メニュー推薦</h1>', unsafe_allow_html=True)
-    
+
     # メニューデータの読み込み
-    menu_items = load_menu_data()
-    
+    db = next(get_db())
+    menu_items = get_all_menu_items(db)
+
     # 予算入力
     st.markdown('<div class="budget-input">', unsafe_allow_html=True)
     budget = st.number_input(
@@ -62,7 +76,7 @@ def main():
         step=100
     )
     st.markdown('</div>', unsafe_allow_html=True)
-    
+
     # 推薦ボタン
     if st.button("メニューを推薦する"):
         if budget < 199:  # 最小価格のメニュー価格
@@ -73,32 +87,38 @@ def main():
         else:
             with st.spinner("メニューを選択中..."):
                 selected_items = select_random_menu(budget, menu_items)
-                
+
                 if selected_items:
-                    total_price = sum(item["price"] for item in selected_items)
-                    
+                    total_price = sum(item.price for item in selected_items)
+
                     st.success(f"予算: {budget}円 中 {total_price}円のメニューを提案します！")
-                    
+
                     # 選択されたメニューの表示
                     for item in selected_items:
                         st.markdown(
                             f'''
                             <div class="menu-card">
-                                <div class="menu-title">{item["name"]}</div>
-                                <div class="menu-price">{item["price"]}円</div>
-                                <div class="menu-description">{item["description"]}</div>
+                                <div class="menu-title">{item.name}</div>
+                                <div class="menu-price">{item.price}円</div>
+                                <div class="menu-description">{item.description}</div>
                             </div>
                             ''',
                             unsafe_allow_html=True
                         )
                 else:
                     st.error("指定された予算内でメニューを見つけることができませんでした。")
-    
+
     # メニュー一覧の表示
     st.markdown("### 全メニュー一覧")
-    df = pd.DataFrame(menu_items)
+    menu_df = pd.DataFrame([{
+        "name": item.name,
+        "price": item.price,
+        "category": item.category,
+        "description": item.description
+    } for item in menu_items])
+
     st.dataframe(
-        df[["name", "price", "category", "description"]].rename(columns={
+        menu_df.rename(columns={
             "name": "メニュー名",
             "price": "価格",
             "category": "カテゴリー",
