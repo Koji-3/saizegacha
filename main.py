@@ -85,39 +85,27 @@ def main():
     categories = sorted(set(item.category for item in menu_items))
     st.markdown("### カテゴリーで絞り込む")
 
-    # カテゴリータグのHTML生成
-    tags_html = '<div class="category-tags">'
-    for category in categories:
-        selected_class = "selected" if category in st.session_state.selected_categories else ""
-        tags_html += f"""
-            <div class="category-tag {selected_class}" 
-                 onclick="document.dispatchEvent(new CustomEvent('category_selected', {{detail: '{category}'}}))"
-            >
-                {category}
-            </div>
-        """
-    tags_html += '</div>'
+    # カテゴリー選択のボタン
+    st.write('<div class="category-tags">', unsafe_allow_html=True)
+    cols = st.columns(len(categories))
+    for idx, category in enumerate(categories):
+        with cols[idx]:
+            is_selected = category in st.session_state.selected_categories
+            button_label = f"{category}"
+            if st.button(
+                button_label,
+                key=f"cat_{category}",
+                type="primary" if is_selected else "secondary",
+                use_container_width=True
+            ):
+                toggle_category(category)
+    st.write('</div>', unsafe_allow_html=True)
 
-    st.markdown(tags_html, unsafe_allow_html=True)
-
-    # JavaScriptでカテゴリー選択のイベントを処理
-    st.markdown("""
-        <script>
-            document.addEventListener('category_selected', function(e) {
-                window.parent.postMessage({
-                    type: 'streamlit:set_state',
-                    data: {
-                        selected_categories: e.detail
-                    }
-                }, '*');
-            });
-        </script>
-    """, unsafe_allow_html=True)
-
-    # カテゴリー選択の状態を更新
-    for category in categories:
-        if st.button(f"Toggle {category}", key=f"btn_{category}", type="secondary"):
-            toggle_category(category)
+    # 選択されているカテゴリーの表示
+    if st.session_state.selected_categories:
+        st.write("選択中のカテゴリー: " + ", ".join(sorted(st.session_state.selected_categories)))
+    else:
+        st.write("カテゴリーが選択されていません（全メニューから選択されます）")
 
     # 予算入力
     st.markdown('<div class="budget-input">', unsafe_allow_html=True)
