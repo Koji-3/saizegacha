@@ -19,6 +19,10 @@
     padding: 0.5rem 1rem !important;
     transition: all 0.2s ease !important;
     width: 100% !important;
+}
+
+/* カテゴリーボタンのスタイル */
+.stButton > button[data-testid*="primary"] {
     background-color: #E60012 !important;
     color: white !important;
 }
@@ -26,6 +30,14 @@
 /* カテゴリーボタンの非選択状態 */
 .stButton > button[data-testid*="secondary"] {
     opacity: 0.5 !important;
+    background-color: #E60012 !important;
+    color: white !important;
+}
+
+/* メニュー推奨ボタンのスタイル */
+.stButton > button:not([key^="cat_"]) {
+    background-color: #2E8B57 !important;
+    color: white !important;
 }
 
 /* メニューカードのスタイル */

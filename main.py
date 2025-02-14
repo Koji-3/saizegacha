@@ -109,7 +109,7 @@ def main():
     )
 
     # 推薦ボタン
-    if st.button("メニューを推薦する"):
+    if st.button("メニュー を 推薦する"):
         if budget < 199:  # 最小価格のメニュー価格
             st.markdown(
                 '<div class="error-message">予算が少なすぎます。最低199円以上を設定してください。</div>',
