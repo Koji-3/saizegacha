@@ -22,17 +22,23 @@ def load_css():
 
 # 初回のみメニューデータをデータベースに登録
 def load_initial_data():
+    """初期データの読み込みとデータベースへの登録"""
     if "initial_load" not in st.session_state:
         db = next(get_db())
-        # 既存のメニューデータを確認
-        existing_items = get_all_menu_items(db)
-        if not existing_items:
+        try:
+            # 既存のデータを削除
+            db.query(MenuItem).delete()
+            db.commit()
+
             # JSONからデータを読み込んでデータベースに登録
             with open("data/menu.json", "r", encoding="utf-8") as f:
                 menu_data = json.load(f)
                 for item in menu_data["menu_items"]:
                     add_menu_item(db, item)
-        st.session_state.initial_load = True
+            st.session_state.initial_load = True
+        except Exception as e:
+            st.error(f"データの読み込みに失敗しました: {str(e)}")
+            db.rollback()
 
 # カテゴリーの選択を切り替える関数
 def toggle_category(category):
