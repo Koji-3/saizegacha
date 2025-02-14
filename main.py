@@ -40,6 +40,8 @@ def toggle_category(category):
         st.session_state.selected_categories.remove(category)
     else:
         st.session_state.selected_categories.add(category)
+    # 即座に状態を反映するために再描画
+    st.experimental_rerun()
 
 # 予算内のメニューをランダムに選択
 def select_random_menu(budget, menu_items):
