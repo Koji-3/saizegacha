@@ -86,7 +86,6 @@ def main():
     st.markdown("### カテゴリーで絞り込む")
 
     # カテゴリー選択のボタン
-    st.write('<div class="category-tags">', unsafe_allow_html=True)
     cols = st.columns(len(categories))
     for idx, category in enumerate(categories):
         with cols[idx]:
@@ -99,16 +98,14 @@ def main():
                 use_container_width=True
             ):
                 toggle_category(category)
-    st.write('</div>', unsafe_allow_html=True)
 
-    # 選択されているカテゴリーの表示
+    # 選択されているカテゴリーの表示（小さいテキストで）
     if st.session_state.selected_categories:
-        st.write("選択中のカテゴリー: " + ", ".join(sorted(st.session_state.selected_categories)))
+        st.caption("選択中のカテゴリー: " + ", ".join(sorted(st.session_state.selected_categories)))
     else:
-        st.write("カテゴリーが選択されていません（全メニューから選択されます）")
+        st.caption("カテゴリーが選択されていません（全メニューから選択されます）")
 
     # 予算入力
-    st.markdown('<div class="budget-input">', unsafe_allow_html=True)
     budget = st.number_input(
         "予算を入力してください（円）",
         min_value=0,
@@ -116,7 +113,6 @@ def main():
         value=1000,
         step=100
     )
-    st.markdown('</div>', unsafe_allow_html=True)
 
     # 推薦ボタン
     if st.button("メニューを推薦する"):
