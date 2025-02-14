@@ -40,7 +40,6 @@ def toggle_category(category):
         st.session_state.selected_categories.remove(category)
     else:
         st.session_state.selected_categories.add(category)
-    # 即座に状態を反映するために再描画
     st.rerun()
 
 # 予算内のメニューをランダムに選択
@@ -82,7 +81,6 @@ def main():
     # カテゴリー一覧の取得と初期化
     categories = sorted(set(item.category for item in menu_items))
     if 'selected_categories' not in st.session_state:
-        # デフォルトですべてのカテゴリーを選択状態に
         st.session_state.selected_categories = set(categories)
 
     st.markdown("### カテゴリーで絞り込む")
@@ -92,11 +90,12 @@ def main():
     for idx, category in enumerate(categories):
         with cols[idx]:
             is_selected = category in st.session_state.selected_categories
+            button_key = f"cat_{category}"
             if st.button(
                 category,
-                key=f"cat_{category}",
+                key=button_key,
                 type="primary" if is_selected else "secondary",
-                use_container_width=True,
+                use_container_width=True
             ):
                 toggle_category(category)
 
@@ -118,11 +117,12 @@ def main():
             )
         else:
             with st.spinner("メニューを選択中..."):
-                selected_items = select_random_menu(budget, menu_items)
+                # カテゴリーでフィルタリング
+                filtered_items = [item for item in menu_items if item.category in st.session_state.selected_categories]
+                selected_items = select_random_menu(budget, filtered_items)
 
                 if selected_items:
                     total_price = sum(item.price for item in selected_items)
-
                     st.success(f"予算: {budget}円 中 {total_price}円のメニューを提案します！")
 
                     # 選択されたメニューの表示

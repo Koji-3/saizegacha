@@ -24,12 +24,12 @@
 }
 
 /* カテゴリーボタン - 選択状態 */
-.stButton > button[data-baseweb="button"][data-testid*="primary"] {
+.stButton > button[data-testid*="primary"] {
     opacity: 1 !important;
 }
 
 /* カテゴリーボタン - 非選択状態 */
-.stButton > button[data-baseweb="button"][data-testid*="secondary"] {
+.stButton > button[data-testid*="secondary"] {
     opacity: 0.5 !important;
 }
 
