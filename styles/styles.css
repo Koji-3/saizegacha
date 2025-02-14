@@ -19,6 +19,8 @@
     padding: 0.5rem 1rem !important;
     transition: all 0.2s ease !important;
     width: 100% !important;
+    background-color: #E60012 !important;
+    color: white !important;
 }
 
 /* 選択状態のボタン */
@@ -41,18 +43,6 @@
 
 .stButton > button[data-baseweb="button"][data-testid*="secondary"]:hover {
     opacity: 0.5 !important;
-}
-
-/* メインアクションボタン（メニュー推薦ボタン） */
-.stButton > button[kind="primary"] {
-    background-color: #E60012 !important;
-    color: white !important;
-    opacity: 1 !important;
-}
-
-.stButton > button[kind="primary"]:hover {
-    background-color: #CC0010 !important;
-    box-shadow: 0 2px 4px rgba(0,0,0,0.2) !important;
 }
 
 /* メニューカードのスタイル */
