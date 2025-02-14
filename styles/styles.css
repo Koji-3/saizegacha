@@ -23,13 +23,14 @@
     color: white !important;
 }
 
-/* カテゴリーボタンのみに適用される透過効果 */
-[data-testid*="cat_"] {
-    opacity: 0.5 !important;
+/* カテゴリーボタン - 選択状態 */
+.stButton > button[data-baseweb="button"][data-testid*="primary"] {
+    opacity: 1 !important;
 }
 
-[data-testid*="cat_"][data-testid*="primary"] {
-    opacity: 1 !important;
+/* カテゴリーボタン - 非選択状態 */
+.stButton > button[data-baseweb="button"][data-testid*="secondary"] {
+    opacity: 0.5 !important;
 }
 
 /* メニューカードのスタイル */
