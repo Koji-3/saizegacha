@@ -34,12 +34,14 @@
 
 /* 非選択状態のボタン */
 .stButton > button[data-baseweb="button"][data-testid*="secondary"] {
-    background-color: rgba(230, 0, 18, 0.3) !important;
-    color: rgba(0, 0, 0, 0.7) !important;
+    background-color: rgba(230, 0, 18, 0.15) !important;
+    color: rgba(0, 0, 0, 0.5) !important;
+    opacity: 0.7 !important;
 }
 
 .stButton > button[data-baseweb="button"][data-testid*="secondary"]:hover {
-    background-color: rgba(230, 0, 18, 0.4) !important;
+    background-color: rgba(230, 0, 18, 0.25) !important;
+    opacity: 0.8 !important;
 }
 
 /* メニューカードのスタイル */
