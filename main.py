@@ -54,14 +54,21 @@ def select_random_menu(budget, menu_items):
 
     selected_items = []
     remaining_budget = budget
+    used_items = set()  # 選択済みの商品を記録
 
     while remaining_budget > 0:
-        affordable_items = [item for item in available_items if item.price <= remaining_budget]
+        # まだ選択されていない商品のみをフィルタリング
+        affordable_items = [
+            item for item in available_items 
+            if item.price <= remaining_budget and item.id not in used_items
+        ]
+
         if not affordable_items:
             break
 
         item = random.choice(affordable_items)
         selected_items.append(item)
+        used_items.add(item.id)  # 選択した商品のIDを記録
         remaining_budget -= item.price
 
     return selected_items
