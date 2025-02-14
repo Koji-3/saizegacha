@@ -13,7 +13,7 @@ Base = declarative_base()
 class MenuItem(Base):
     __tablename__ = "menu_items"
 
-    id = Column(Integer, primary_key=True)
+    id = Column(Integer, primary_key=True, autoincrement=True)
     name = Column(String, nullable=False)
     price = Column(Integer, nullable=False)
     category = Column(String, nullable=False)
@@ -35,7 +35,14 @@ def get_all_menu_items(db):
     return db.query(MenuItem).all()
 
 def add_menu_item(db, item_data):
-    menu_item = MenuItem(**item_data)
+    # IDを除外して新しいメニューアイテムを作成
+    menu_data = {
+        'name': item_data['name'],
+        'price': item_data['price'],
+        'category': item_data['category'],
+        'description': item_data['description']
+    }
+    menu_item = MenuItem(**menu_data)
     db.add(menu_item)
     db.commit()
     db.refresh(menu_item)
