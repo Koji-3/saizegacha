@@ -34,10 +34,6 @@ def load_initial_data():
                     add_menu_item(db, item)
         st.session_state.initial_load = True
 
-# セッション状態の初期化
-if 'selected_categories' not in st.session_state:
-    st.session_state.selected_categories = set()
-
 # カテゴリーの選択を切り替える関数
 def toggle_category(category):
     if category in st.session_state.selected_categories:
@@ -81,8 +77,12 @@ def main():
     db = next(get_db())
     menu_items = get_all_menu_items(db)
 
-    # カテゴリータグの表示
+    # カテゴリー一覧の取得と初期化
     categories = sorted(set(item.category for item in menu_items))
+    if 'selected_categories' not in st.session_state:
+        # デフォルトですべてのカテゴリーを選択状態に
+        st.session_state.selected_categories = set(categories)
+
     st.markdown("### カテゴリーで絞り込む")
 
     # カテゴリー選択のボタン
@@ -95,10 +95,10 @@ def main():
                 button_label,
                 key=f"cat_{category}",
                 type="primary" if is_selected else "secondary",
-                use_container_width=True
+                use_container_width=True,
+                disabled=not is_selected
             ):
                 toggle_category(category)
-
 
     # 予算入力
     budget = st.number_input(
