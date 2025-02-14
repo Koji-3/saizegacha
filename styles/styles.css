@@ -67,19 +67,24 @@
     transition: all 0.2s ease !important;
 }
 
-/* 選択されていないボタンのスタイル */
-.stButton > button[disabled] {
+/* 非選択状態のボタンのスタイル */
+.stButton > button[data-baseweb="button"][kind="secondary"] {
     background-color: rgba(230, 0, 18, 0.3) !important;
     color: rgba(255, 255, 255, 0.7) !important;
     cursor: pointer !important;
 }
 
-.stButton > button[disabled]:hover {
+.stButton > button[data-baseweb="button"][kind="secondary"]:hover {
     background-color: rgba(230, 0, 18, 0.4) !important;
 }
 
-/* アクティブなボタンのスタイル */
-.stButton > button:not([disabled]):hover {
+/* 選択状態のボタンのスタイル */
+.stButton > button[data-baseweb="button"][kind="primary"] {
+    background-color: #E60012 !important;
+    color: white !important;
+}
+
+.stButton > button[data-baseweb="button"][kind="primary"]:hover {
     background-color: #CC0010 !important;
     box-shadow: 0 2px 4px rgba(0,0,0,0.2) !important;
 }

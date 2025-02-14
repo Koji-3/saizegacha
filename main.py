@@ -98,7 +98,6 @@ def main():
                 key=f"cat_{category}",
                 type="primary" if is_selected else "secondary",
                 use_container_width=True,
-                disabled=not is_selected
             ):
                 toggle_category(category)
 
