@@ -99,11 +99,6 @@ def main():
             ):
                 toggle_category(category)
 
-    # 選択されているカテゴリーの表示（小さいテキストで）
-    if st.session_state.selected_categories:
-        st.caption("選択中のカテゴリー: " + ", ".join(sorted(st.session_state.selected_categories)))
-    else:
-        st.caption("カテゴリーが選択されていません（全メニューから選択されます）")
 
     # 予算入力
     budget = st.number_input(
