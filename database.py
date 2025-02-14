@@ -14,7 +14,7 @@ class MenuItem(Base):
     __tablename__ = "menu_items"
 
     id = Column(Integer, primary_key=True, autoincrement=True)
-    name = Column(String, nullable=False)
+    name = Column(String, nullable=False, unique=True)  # 名前をユニークに設定
     price = Column(Integer, nullable=False)
     category = Column(String, nullable=False)
     description = Column(String)
@@ -35,7 +35,12 @@ def get_all_menu_items(db):
     return db.query(MenuItem).all()
 
 def add_menu_item(db, item_data):
-    # IDを除外して新しいメニューアイテムを作成
+    # 同じ名前のメニューが存在するかチェック
+    existing_item = db.query(MenuItem).filter(MenuItem.name == item_data['name']).first()
+    if existing_item:
+        return None  # 重複する場合はスキップ
+
+    # 新しいメニューアイテムを作成
     menu_data = {
         'name': item_data['name'],
         'price': item_data['price'],
@@ -44,6 +49,10 @@ def add_menu_item(db, item_data):
     }
     menu_item = MenuItem(**menu_data)
     db.add(menu_item)
-    db.commit()
-    db.refresh(menu_item)
-    return menu_item
+    try:
+        db.commit()
+        db.refresh(menu_item)
+        return menu_item
+    except Exception as e:
+        db.rollback()
+        raise e
