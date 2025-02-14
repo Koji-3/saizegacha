@@ -12,7 +12,7 @@
     gap: 0.5rem;
 }
 
-/* Streamlitのボタンスタイルのカスタマイズ */
+/* すべてのボタンの基本スタイル */
 .stButton > button {
     font-weight: bold !important;
     border: none !important;
@@ -25,25 +25,12 @@
 
 /* カテゴリーボタン - 選択状態 */
 .stButton > button[data-baseweb="button"][data-testid*="primary"] {
-    background-color: #E60012 !important;
-    color: white !important;
     opacity: 1 !important;
-}
-
-.stButton > button[data-baseweb="button"][data-testid*="primary"]:hover {
-    background-color: #CC0010 !important;
-    box-shadow: 0 2px 4px rgba(0,0,0,0.2) !important;
 }
 
 /* カテゴリーボタン - 非選択状態 */
 .stButton > button[data-baseweb="button"][data-testid*="secondary"] {
-    background-color: #E60012 !important;
-    color: white !important;
     opacity: 0.5 !important;
-}
-
-.stButton > button[data-baseweb="button"][data-testid*="secondary"]:hover {
-    opacity: 0.7 !important;
 }
 
 /* メニューカードのスタイル */
