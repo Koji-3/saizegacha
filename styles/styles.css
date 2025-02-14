@@ -23,10 +23,11 @@
     color: white !important;
 }
 
-/* 選択状態のボタン */
+/* カテゴリーボタン - 選択状態 */
 .stButton > button[data-baseweb="button"][data-testid*="primary"] {
     background-color: #E60012 !important;
     color: white !important;
+    opacity: 1 !important;
 }
 
 .stButton > button[data-baseweb="button"][data-testid*="primary"]:hover {
@@ -34,8 +35,10 @@
     box-shadow: 0 2px 4px rgba(0,0,0,0.2) !important;
 }
 
-/* 非選択状態のボタン */
+/* カテゴリーボタン - 非選択状態 */
 .stButton > button[data-baseweb="button"][data-testid*="secondary"] {
+    background-color: #E60012 !important;
+    color: white !important;
     opacity: 0.5 !important;
 }
 
