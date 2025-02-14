@@ -92,9 +92,8 @@ def main():
     for idx, category in enumerate(categories):
         with cols[idx]:
             is_selected = category in st.session_state.selected_categories
-            button_label = f"{category}"
             if st.button(
-                button_label,
+                category,
                 key=f"cat_{category}",
                 type="primary" if is_selected else "secondary",
                 use_container_width=True,

@@ -12,6 +12,36 @@
     gap: 0.5rem;
 }
 
+/* Streamlitのボタンスタイルのカスタマイズ */
+.stButton > button {
+    font-weight: bold !important;
+    border: none !important;
+    padding: 0.5rem 1rem !important;
+    transition: all 0.2s ease !important;
+    width: 100% !important;
+}
+
+/* 選択状態のボタン */
+.stButton > button[data-baseweb="button"][data-testid*="primary"] {
+    background-color: #E60012 !important;
+    color: white !important;
+}
+
+.stButton > button[data-baseweb="button"][data-testid*="primary"]:hover {
+    background-color: #CC0010 !important;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.2) !important;
+}
+
+/* 非選択状態のボタン */
+.stButton > button[data-baseweb="button"][data-testid*="secondary"] {
+    background-color: rgba(230, 0, 18, 0.3) !important;
+    color: rgba(0, 0, 0, 0.7) !important;
+}
+
+.stButton > button[data-baseweb="button"][data-testid*="secondary"]:hover {
+    background-color: rgba(230, 0, 18, 0.4) !important;
+}
+
 /* メニューカードのスタイル */
 .menu-card {
     background-color: #FFFFFF;
@@ -55,38 +85,6 @@
     margin: 1rem 0;
     border-radius: 5px;
     border: 1px solid #E60012;
-}
-
-/* Streamlitのデフォルトスタイルのカスタマイズ */
-.stButton > button {
-    background-color: #E60012 !important;
-    color: white !important;
-    border: none !important;
-    padding: 0.5rem 2rem !important;
-    font-weight: bold !important;
-    transition: all 0.2s ease !important;
-}
-
-/* 非選択状態のボタンのスタイル */
-.stButton > button[data-baseweb="button"][kind="secondary"] {
-    background-color: rgba(230, 0, 18, 0.3) !important;
-    color: rgba(255, 255, 255, 0.7) !important;
-    cursor: pointer !important;
-}
-
-.stButton > button[data-baseweb="button"][kind="secondary"]:hover {
-    background-color: rgba(230, 0, 18, 0.4) !important;
-}
-
-/* 選択状態のボタンのスタイル */
-.stButton > button[data-baseweb="button"][kind="primary"] {
-    background-color: #E60012 !important;
-    color: white !important;
-}
-
-.stButton > button[data-baseweb="button"][kind="primary"]:hover {
-    background-color: #CC0010 !important;
-    box-shadow: 0 2px 4px rgba(0,0,0,0.2) !important;
 }
 
 /* データフレームのスタイル */
