@@ -34,8 +34,23 @@ def load_initial_data():
                     add_menu_item(db, item)
         st.session_state.initial_load = True
 
+# セッション状態の初期化
+if 'selected_categories' not in st.session_state:
+    st.session_state.selected_categories = set()
+
+# カテゴリーの選択を切り替える関数
+def toggle_category(category):
+    if category in st.session_state.selected_categories:
+        st.session_state.selected_categories.remove(category)
+    else:
+        st.session_state.selected_categories.add(category)
+
 # 予算内のメニューをランダムに選択
 def select_random_menu(budget, menu_items):
+    # カテゴリーでフィルタリング
+    if st.session_state.selected_categories:
+        menu_items = [item for item in menu_items if item.category in st.session_state.selected_categories]
+
     available_items = [item for item in menu_items if item.price <= budget]
     if not available_items:
         return None
@@ -65,6 +80,44 @@ def main():
     # メニューデータの読み込み
     db = next(get_db())
     menu_items = get_all_menu_items(db)
+
+    # カテゴリータグの表示
+    categories = sorted(set(item.category for item in menu_items))
+    st.markdown("### カテゴリーで絞り込む")
+
+    # カテゴリータグのHTML生成
+    tags_html = '<div class="category-tags">'
+    for category in categories:
+        selected_class = "selected" if category in st.session_state.selected_categories else ""
+        tags_html += f"""
+            <div class="category-tag {selected_class}" 
+                 onclick="document.dispatchEvent(new CustomEvent('category_selected', {{detail: '{category}'}}))"
+            >
+                {category}
+            </div>
+        """
+    tags_html += '</div>'
+
+    st.markdown(tags_html, unsafe_allow_html=True)
+
+    # JavaScriptでカテゴリー選択のイベントを処理
+    st.markdown("""
+        <script>
+            document.addEventListener('category_selected', function(e) {
+                window.parent.postMessage({
+                    type: 'streamlit:set_state',
+                    data: {
+                        selected_categories: e.detail
+                    }
+                }, '*');
+            });
+        </script>
+    """, unsafe_allow_html=True)
+
+    # カテゴリー選択の状態を更新
+    for category in categories:
+        if st.button(f"Toggle {category}", key=f"btn_{category}", type="secondary"):
+            toggle_category(category)
 
     # 予算入力
     st.markdown('<div class="budget-input">', unsafe_allow_html=True)
@@ -110,12 +163,18 @@ def main():
 
     # メニュー一覧の表示
     st.markdown("### 全メニュー一覧")
+
+    # カテゴリーでフィルタリングされたメニューを表示
+    filtered_items = menu_items
+    if st.session_state.selected_categories:
+        filtered_items = [item for item in menu_items if item.category in st.session_state.selected_categories]
+
     menu_df = pd.DataFrame([{
         "name": item.name,
         "price": item.price,
         "category": item.category,
         "description": item.description
-    } for item in menu_items])
+    } for item in filtered_items])
 
     st.dataframe(
         menu_df.rename(columns={

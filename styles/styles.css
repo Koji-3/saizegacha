@@ -59,6 +59,37 @@
     border: 1px solid #E60012;
 }
 
+/* カテゴリータグのスタイル */
+.category-tags {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.5rem;
+    margin: 1rem 0;
+    padding: 1rem;
+    background-color: #FFE5E5;
+    border-radius: 10px;
+}
+
+.category-tag {
+    background-color: white;
+    color: #E60012;
+    border: 2px solid #E60012;
+    padding: 0.5rem 1rem;
+    border-radius: 20px;
+    cursor: pointer;
+    font-weight: bold;
+    transition: all 0.2s ease;
+}
+
+.category-tag:hover {
+    background-color: #FFE5E5;
+}
+
+.category-tag.selected {
+    background-color: #E60012;
+    color: white;
+}
+
 /* Streamlitのデフォルトスタイルのカスタマイズ */
 .stButton > button {
     background-color: #E60012 !important;
