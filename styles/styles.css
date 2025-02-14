@@ -36,13 +36,11 @@
 
 /* 非選択状態のボタン */
 .stButton > button[data-baseweb="button"][data-testid*="secondary"] {
-    background-color: #E60012 !important;
-    color: white !important;
-    opacity: 0.4 !important;
+    opacity: 0.5 !important;
 }
 
 .stButton > button[data-baseweb="button"][data-testid*="secondary"]:hover {
-    opacity: 0.5 !important;
+    opacity: 0.7 !important;
 }
 
 /* メニューカードのスタイル */
