@@ -24,13 +24,8 @@
 }
 
 /* カテゴリーボタンの非選択状態 */
-.stButton > button[key*="cat_"] {
+.stButton > button[data-testid*="secondary"] {
     opacity: 0.5 !important;
-}
-
-/* カテゴリーボタンの選択状態 */
-.stButton > button[key*="cat_"][data-testid*="primary"] {
-    opacity: 1 !important;
 }
 
 /* メニューカードのスタイル */
