@@ -3,10 +3,6 @@ import json
 import random
 import pandas as pd
 from pathlib import Path
-from database import init_db, get_db, MenuItem, get_all_menu_items, add_menu_item
-
-# データベース初期化
-init_db()
 
 # ページの設定
 st.set_page_config(
@@ -20,25 +16,11 @@ def load_css():
     css_file = Path("styles/styles.css").read_text()
     st.markdown(f"<style>{css_file}</style>", unsafe_allow_html=True)
 
-# 初回のみメニューデータをデータベースに登録
-def load_initial_data():
-    """初期データの読み込みとデータベースへの登録"""
-    if "initial_load" not in st.session_state:
-        db = next(get_db())
-        try:
-            # 既存のデータを削除
-            db.query(MenuItem).delete()
-            db.commit()
-
-            # JSONからデータを読み込んでデータベースに登録
-            with open("data/menu.json", "r", encoding="utf-8") as f:
-                menu_data = json.load(f)
-                for item in menu_data["menu_items"]:
-                    add_menu_item(db, item)
-            st.session_state.initial_load = True
-        except Exception as e:
-            st.error(f"データの読み込みに失敗しました: {str(e)}")
-            db.rollback()
+# メニューデータの読み込み
+def load_menu_data():
+    with open("data/menu.json", "r", encoding="utf-8") as f:
+        data = json.load(f)
+        return data["menu_items"]
 
 # カテゴリーの選択を切り替える関数
 def toggle_category(category):
@@ -52,9 +34,9 @@ def toggle_category(category):
 def select_random_menu(budget, menu_items):
     # カテゴリーでフィルタリング
     if st.session_state.selected_categories:
-        menu_items = [item for item in menu_items if item.category in st.session_state.selected_categories]
+        menu_items = [item for item in menu_items if item["category"] in st.session_state.selected_categories]
 
-    available_items = [item for item in menu_items if item.price <= budget]
+    available_items = [item for item in menu_items if item["price"] <= budget]
     if not available_items:
         return None
 
@@ -66,7 +48,7 @@ def select_random_menu(budget, menu_items):
         # まだ選択されていない商品のみをフィルタリング
         affordable_items = [
             item for item in available_items 
-            if item.price <= remaining_budget and item.id not in used_items
+            if item["price"] <= remaining_budget and item["id"] not in used_items
         ]
 
         if not affordable_items:
@@ -74,25 +56,29 @@ def select_random_menu(budget, menu_items):
 
         item = random.choice(affordable_items)
         selected_items.append(item)
-        used_items.add(item.id)  # 選択した商品のIDを記録
-        remaining_budget -= item.price
+        used_items.add(item["id"])  # 選択した商品のIDを記録
+        remaining_budget -= item["price"]
 
     return selected_items
 
 # メインアプリケーション
 def main():
     load_css()
-    load_initial_data()
 
     # ヘッダー
     st.markdown('<h1 class="main-header">サイゼリヤ メニュー推薦</h1>', unsafe_allow_html=True)
 
     # メニューデータの読み込み
-    db = next(get_db())
-    menu_items = get_all_menu_items(db)
+    menu_items = load_menu_data()
+
+    # 重複を除去（同じ名前のメニューは最新のものを保持）
+    unique_menu_items = {}
+    for item in menu_items:
+        unique_menu_items[item["name"]] = item
+    menu_items = list(unique_menu_items.values())
 
     # カテゴリー一覧の取得と初期化
-    categories = sorted(set(item.category for item in menu_items))
+    categories = sorted(set(item["category"] for item in menu_items))
     if 'selected_categories' not in st.session_state:
         st.session_state.selected_categories = set(categories)
 
@@ -131,11 +117,11 @@ def main():
         else:
             with st.spinner("メニューを選択中..."):
                 # カテゴリーでフィルタリング
-                filtered_items = [item for item in menu_items if item.category in st.session_state.selected_categories]
+                filtered_items = [item for item in menu_items if item["category"] in st.session_state.selected_categories]
                 selected_items = select_random_menu(budget, filtered_items)
 
                 if selected_items:
-                    total_price = sum(item.price for item in selected_items)
+                    total_price = sum(item["price"] for item in selected_items)
                     st.success(f"予算: {budget}円 中 {total_price}円のメニューを提案します！")
 
                     # 選択されたメニューの表示
@@ -143,9 +129,9 @@ def main():
                         st.markdown(
                             f'''
                             <div class="menu-card">
-                                <div class="menu-title">{item.name}</div>
-                                <div class="menu-price">{item.price}円</div>
-                                <div class="menu-description">{item.description}</div>
+                                <div class="menu-title">{item["name"]}</div>
+                                <div class="menu-price">{item["price"]}円</div>
+                                <div class="menu-description">{item["description"]}</div>
                             </div>
                             ''',
                             unsafe_allow_html=True
@@ -159,13 +145,13 @@ def main():
     # カテゴリーでフィルタリングされたメニューを表示
     filtered_items = menu_items
     if st.session_state.selected_categories:
-        filtered_items = [item for item in menu_items if item.category in st.session_state.selected_categories]
+        filtered_items = [item for item in menu_items if item["category"] in st.session_state.selected_categories]
 
     menu_df = pd.DataFrame([{
-        "name": item.name,
-        "price": item.price,
-        "category": item.category,
-        "description": item.description
+        "name": item["name"],
+        "price": item["price"],
+        "category": item["category"],
+        "description": item["description"]
     } for item in filtered_items])
 
     st.dataframe(
