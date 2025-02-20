@@ -17,28 +17,39 @@
     font-weight: bold !important;
     border: none !important;
     padding: 0.5rem 1rem !important;
-    transition: all 0.2s ease !important;
     width: 100% !important;
+    transition: all 0.1s ease-out !important; /* トランジション時間を短縮 */
+    position: relative !important;
+    overflow: hidden !important;
 }
 
 /* カテゴリーボタンの選択状態（primary） */
 .stButton > button[data-testid*="primary"] {
-    background-color: #2E8B57 !important; /* 緑色 */
+    background-color: #2E8B57 !important;
     color: white !important;
-    opacity: 1 !important; /* しっかり表示 */
-    transition: opacity 0.2s ease-in-out !important;
+    opacity: 1 !important;
+    transform: scale(1) !important;
 }
 
 /* カテゴリーボタンの非選択状態（secondary） */
 .stButton > button[data-testid*="secondary"] {
-    background-color: #2E8B57 !important; /* 同じ緑色 */
+    background-color: #2E8B57 !important;
     color: white !important;
-    opacity: 0.5 !important; /* 半透明に */
+    opacity: 0.5 !important;
+    transform: scale(0.98) !important;
 }
 
-/* クリック時に一時的に暗くする */
+/* ホバー効果 */
+.stButton > button:hover {
+    transform: scale(1.02) !important;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.1) !important;
+}
+
+/* クリック時のエフェクト */
 .stButton > button:active {
+    transform: scale(0.98) !important;
     opacity: 0.8 !important;
+    transition: all 0.05s ease-out !important; /* クリック時は更に短い時間で */
 }
 
 /* メニューカードのスタイル */
