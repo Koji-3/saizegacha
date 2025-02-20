@@ -82,7 +82,7 @@ def main():
     if 'selected_categories' not in st.session_state:
         st.session_state.selected_categories = set(categories)
 
-    st.markdown("### カテゴリーで絞り込む")
+    st.markdown("###### カテゴリーで絞り込む")
 
     # カテゴリー選択のボタン
     cols = st.columns(len(categories))
@@ -98,17 +98,22 @@ def main():
             ):
                 toggle_category(category)
 
+    st.markdown("###### 予算を入力してください")
+    
     # 予算入力
     budget = st.number_input(
-        "予算を入力してください（円）",
+        "テキスト",
         min_value=0,
         max_value=10000,
         value=1000,
-        step=100
+        step=100,
+        label_visibility="collapsed"
     )
 
     # 推薦ボタン
-    if st.button("メニュー を 推薦する"):
+    if st.button(
+        "メニューを推薦する",
+        type="primary"):
         if budget < 199:  # 最小価格のメニュー価格
             st.markdown(
                 '<div class="error-message">予算が少なすぎます。最低199円以上を設定してください。</div>',
