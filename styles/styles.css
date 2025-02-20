@@ -25,6 +25,7 @@
 .stButton > button[data-testid*="primary"] {
     background-color: #2E8B57 !important;
     color: white !important;
+    opacity: 0.8 !important; /* Added opacity */
 }
 
 /* カテゴリーボタンの非選択状態 */
