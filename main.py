@@ -35,6 +35,7 @@ def load_css():
 
 # カテゴリーの選択を切り替える関数
 def toggle_category(category, current_categories):
+    """カテゴリーの選択状態を即座に切り替える"""
     if category in current_categories:
         current_categories.remove(category)
     else:
@@ -91,17 +92,19 @@ def main():
     for idx, category in enumerate(categories):
         with cols[idx]:
             is_selected = category in st.session_state.selected_categories
-            button_key = f"cat_{category}"
             if st.button(
                 category,
-                key=button_key,
+                key=f"cat_{category}",
                 type="primary" if is_selected else "secondary",
                 use_container_width=True
             ):
-                st.session_state.selected_categories = toggle_category(
+                # 状態を即座に更新
+                new_categories = toggle_category(
                     category, 
-                    st.session_state.selected_categories
+                    st.session_state.selected_categories.copy()
                 )
+                st.session_state.selected_categories = new_categories
+                st.rerun()  # 状態更新後に即座に再描画
 
     st.markdown("###### 予算を入力してください")
 
