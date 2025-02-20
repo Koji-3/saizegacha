@@ -21,16 +21,24 @@
     width: 100% !important;
 }
 
-/* プライマリーボタンのスタイル */
+/* カテゴリーボタンの選択状態（primary） */
 .stButton > button[data-testid*="primary"] {
-    background-color: #2E8B57 !important;
+    background-color: #2E8B57 !important; /* 緑色 */
     color: white !important;
+    opacity: 1 !important; /* しっかり表示 */
+    transition: opacity 0.2s ease-in-out !important;
 }
 
-/* カテゴリーボタンの非選択状態 */
+/* カテゴリーボタンの非選択状態（secondary） */
 .stButton > button[data-testid*="secondary"] {
-    opacity: 0.5 !important;
+    background-color: #2E8B57 !important; /* 同じ緑色 */
     color: white !important;
+    opacity: 0.5 !important; /* 半透明に */
+}
+
+/* クリック時に一時的に暗くする */
+.stButton > button:active {
+    opacity: 0.8 !important;
 }
 
 /* メニューカードのスタイル */
