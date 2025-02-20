@@ -11,16 +11,32 @@ st.set_page_config(
     layout="wide"
 )
 
+# グローバル変数の初期化
+MENU_ITEMS = []
+CATEGORIES = []
+
+# 初期化関数
+def initialize_data():
+    global MENU_ITEMS, CATEGORIES
+
+    # メニューデータの読み込み
+    with open("data/menu.json", "r", encoding="utf-8") as f:
+        data = json.load(f)
+        menu_items = data["menu_items"]
+
+    # 重複を除去（同じ名前のメニューは最新のものを保持）
+    unique_menu_items = {}
+    for item in menu_items:
+        unique_menu_items[item["name"]] = item
+    MENU_ITEMS = list(unique_menu_items.values())
+
+    # カテゴリー一覧の取得
+    CATEGORIES = sorted(set(item["category"] for item in MENU_ITEMS))
+
 # CSSの読み込み
 def load_css():
     css_file = Path("styles/styles.css").read_text()
     st.markdown(f"<style>{css_file}</style>", unsafe_allow_html=True)
-
-# メニューデータの読み込み
-def load_menu_data():
-    with open("data/menu.json", "r", encoding="utf-8") as f:
-        data = json.load(f)
-        return data["menu_items"]
 
 # カテゴリーの選択を切り替える関数
 def toggle_category(category):
@@ -31,21 +47,19 @@ def toggle_category(category):
     st.rerun()
 
 # 予算内のメニューをランダムに選択
-def select_random_menu(budget, menu_items):
+def select_random_menu(budget):
     # カテゴリーでフィルタリング
-    if st.session_state.selected_categories:
-        menu_items = [item for item in menu_items if item["category"] in st.session_state.selected_categories]
+    filtered_items = [item for item in MENU_ITEMS if item["category"] in st.session_state.selected_categories]
+    available_items = [item for item in filtered_items if item["price"] <= budget]
 
-    available_items = [item for item in menu_items if item["price"] <= budget]
     if not available_items:
         return None
 
     selected_items = []
     remaining_budget = budget
-    used_items = set()  # 選択済みの商品を記録
+    used_items = set()
 
     while remaining_budget > 0:
-        # まだ選択されていない商品のみをフィルタリング
         affordable_items = [
             item for item in available_items 
             if item["price"] <= remaining_budget and item["id"] not in used_items
@@ -56,37 +70,31 @@ def select_random_menu(budget, menu_items):
 
         item = random.choice(affordable_items)
         selected_items.append(item)
-        used_items.add(item["id"])  # 選択した商品のIDを記録
+        used_items.add(item["id"])
         remaining_budget -= item["price"]
 
     return selected_items
 
 # メインアプリケーション
 def main():
+    # アプリケーション起動時に1回だけデータを初期化
+    if not MENU_ITEMS:
+        initialize_data()
+
     load_css()
 
     # ヘッダー
     st.markdown('<h1 class="main-header">サイゼリヤ メニュー推薦</h1>', unsafe_allow_html=True)
 
-    # メニューデータの読み込み
-    menu_items = load_menu_data()
-
-    # 重複を除去（同じ名前のメニューは最新のものを保持）
-    unique_menu_items = {}
-    for item in menu_items:
-        unique_menu_items[item["name"]] = item
-    menu_items = list(unique_menu_items.values())
-
-    # カテゴリー一覧の取得と初期化
-    categories = sorted(set(item["category"] for item in menu_items))
+    # カテゴリー選択の初期化
     if 'selected_categories' not in st.session_state:
-        st.session_state.selected_categories = set(categories)
+        st.session_state.selected_categories = set(CATEGORIES)
 
     st.markdown("###### カテゴリーで絞り込む")
 
     # カテゴリー選択のボタン
-    cols = st.columns(len(categories))
-    for idx, category in enumerate(categories):
+    cols = st.columns(len(CATEGORIES))
+    for idx, category in enumerate(CATEGORIES):
         with cols[idx]:
             is_selected = category in st.session_state.selected_categories
             button_key = f"cat_{category}"
@@ -99,7 +107,7 @@ def main():
                 toggle_category(category)
 
     st.markdown("###### 予算を入力してください")
-    
+
     # 予算入力
     budget = st.number_input(
         "テキスト",
@@ -114,16 +122,14 @@ def main():
     if st.button(
         "メニューを推薦する",
         type="primary"):
-        if budget < 199:  # 最小価格のメニュー価格
+        if budget < 199:
             st.markdown(
                 '<div class="error-message">予算が少なすぎます。最低199円以上を設定してください。</div>',
                 unsafe_allow_html=True
             )
         else:
             with st.spinner("メニューを選択中..."):
-                # カテゴリーでフィルタリング
-                filtered_items = [item for item in menu_items if item["category"] in st.session_state.selected_categories]
-                selected_items = select_random_menu(budget, filtered_items)
+                selected_items = select_random_menu(budget)
 
                 if selected_items:
                     total_price = sum(item["price"] for item in selected_items)
@@ -148,9 +154,7 @@ def main():
     st.markdown("### 全メニュー一覧")
 
     # カテゴリーでフィルタリングされたメニューを表示
-    filtered_items = menu_items
-    if st.session_state.selected_categories:
-        filtered_items = [item for item in menu_items if item["category"] in st.session_state.selected_categories]
+    filtered_items = [item for item in MENU_ITEMS if item["category"] in st.session_state.selected_categories]
 
     menu_df = pd.DataFrame([{
         "name": item["name"],
