@@ -24,7 +24,17 @@ def load_menu_data():
         unique_menu_items[item["name"]] = item
 
     items = list(unique_menu_items.values())
-    categories = sorted(set(item["category"] for item in items))
+    
+    # 【修正前】以下一行
+    # categories = sorted(set(item["category"] for item in items))
+    
+    # 【修正後】以下一行
+    # カテゴリのカスタム順序を定義
+    category_order = ["サラダ", "スープ", "パン", "サイドメニュー", "ピザ", "ドリア", "パスタ", "肉メイン", "ライス", "デザート", "お酒", "トッピング"]
+
+    # カテゴリをカスタム順に並び替える
+    categories = [cat for cat in category_order if cat in set(item["category"] for item in items)]
+
     return items, categories
 
 # CSSの読み込み
@@ -72,6 +82,9 @@ def select_random_menu(budget, menu_items, selected_categories):
 
 # メインアプリケーション
 def main():
+    # キャッシュをクリア（コード変更時の反映を確実にする）
+    st.cache_data.clear()
+    
     # キャッシュされたデータの読み込み
     menu_items, categories = load_menu_data()
 
@@ -159,6 +172,7 @@ def main():
     filtered_items = [item for item in menu_items if item["category"] in st.session_state.selected_categories]
 
     menu_df = pd.DataFrame([{
+        "id":  str(item["id"]),
         "name": item["name"],
         "price": item["price"],
         "category": item["category"],
@@ -167,6 +181,7 @@ def main():
 
     st.dataframe(
         menu_df.rename(columns={
+            "id": "注文番号",
             "name": "メニュー名",
             "price": "価格",
             "category": "カテゴリー",

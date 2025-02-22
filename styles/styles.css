@@ -21,6 +21,10 @@
     transition: all 0.1s ease-out !important; /* トランジション時間を短縮 */
     position: relative !important;
     overflow: hidden !important;
+    /* ✅ 文字の改行を防ぐ */
+    /* white-space: nowrap !important; */
+    /* ✅ ボタンの幅を文字の長さに応じて可変に */
+    /* width: auto !important; */
 }
 
 /* カテゴリーボタンの選択状態（primary） */
@@ -34,7 +38,6 @@
 /* カテゴリーボタンの非選択状態（secondary） */
 .stButton > button[data-testid*="secondary"] {
     background-color: #2E8B57 !important;
-    color: white !important;
     opacity: 0.5 !important;
     transform: scale(0.98) !important;
 }
