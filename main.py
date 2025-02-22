@@ -25,10 +25,6 @@ def load_menu_data():
 
     items = list(unique_menu_items.values())
     
-    # 【修正前】以下一行
-    # categories = sorted(set(item["category"] for item in items))
-    
-    # 【修正後】以下一行
     # カテゴリのカスタム順序を定義
     category_order = ["サラダ", "スープ", "パン", "サイドメニュー", "ピザ", "ドリア", "パスタ", "肉メイン", "ライス", "デザート", "お酒", "トッピング"]
 
@@ -101,23 +97,23 @@ def main():
     st.markdown("###### カテゴリーで絞り込む")
 
     # カテゴリー選択のボタン
-    cols = st.columns(len(categories))
-    for idx, category in enumerate(categories):
-        with cols[idx]:
-            is_selected = category in st.session_state.selected_categories
-            if st.button(
-                category,
-                key=f"cat_{category}",
-                type="primary" if is_selected else "secondary",
-                use_container_width=True
-            ):
-                # 状態を即座に更新
-                new_categories = toggle_category(
-                    category, 
-                    st.session_state.selected_categories.copy()
-                )
-                st.session_state.selected_categories = new_categories
-                st.rerun()  # 状態更新後に即座に再描画
+    st.markdown('<div class="category-button-container">', unsafe_allow_html=True)
+    for category in categories:
+        is_selected = category in st.session_state.selected_categories
+        if st.button(
+            category,
+            key=f"cat_{category}",
+            type="primary" if is_selected else "secondary",
+            use_container_width=False
+        ):
+            # 状態を即座に更新
+            new_categories = toggle_category(
+                category, 
+                st.session_state.selected_categories.copy()
+            )
+            st.session_state.selected_categories = new_categories
+            st.rerun()  # 状態更新後に即座に再描画
+    st.markdown('</div>', unsafe_allow_html=True)
 
     st.markdown("###### 予算を入力してください")
 

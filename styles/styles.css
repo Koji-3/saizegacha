@@ -23,6 +23,7 @@
     position: relative !important;
     overflow: hidden !important;
     white-space: nowrap !important;
+    margin: 0 !important; /* Added to remove default margin */
 }
 
 /* カテゴリーボタンの選択状態（primary） */
@@ -101,4 +102,12 @@
 /* データフレームのスタイル */
 .dataframe {
     border: 1px solid #E60012 !important;
+}
+
+/* New styles for grid layout */
+.category-button-container {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(100px, auto));
+    gap: 1rem;
+    padding: 1rem 0;
 }
