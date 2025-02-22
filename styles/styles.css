@@ -17,10 +17,12 @@
     font-weight: bold !important;
     border: none !important;
     padding: 0.5rem 1rem !important;
-    min-width: fit-content !important;
+    width: auto !important;
+    min-width: auto !important;
     transition: all 0.1s ease-out !important;
     position: relative !important;
     overflow: hidden !important;
+    white-space: nowrap !important;
 }
 
 /* カテゴリーボタンの選択状態（primary） */
@@ -48,7 +50,7 @@
 .stButton > button:active {
     transform: scale(0.98) !important;
     opacity: 0.8 !important;
-    transition: all 0.05s ease-out !important; /* クリック時は更に短い時間で */
+    transition: all 0.05s ease-out !important;
 }
 
 /* メニューカードのスタイル */
