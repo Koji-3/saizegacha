@@ -25,10 +25,6 @@ def load_menu_data():
 
     items = list(unique_menu_items.values())
     
-    # 【修正前】以下一行
-    # categories = sorted(set(item["category"] for item in items))
-    
-    # 【修正後】以下一行
     # カテゴリのカスタム順序を定義
     category_order = ["サラダ", "スープ", "パン", "サイドメニュー", "ピザ", "ドリア", "パスタ", "肉メイン", "ライス", "デザート", "お酒", "トッピング"]
 
@@ -109,7 +105,6 @@ def main():
                 category,
                 key=f"cat_{category}",
                 type="primary" if is_selected else "secondary",
-                use_container_width=True
             ):
                 # 状態を即座に更新
                 new_categories = toggle_category(
