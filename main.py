@@ -127,38 +127,40 @@ def main():
     )
 
     # 推薦ボタン
-    if st.button("ガチャを回す", type="primary", key="recommend", use_container_width=False):
-        if budget < 199:
-            st.markdown(
-                '<div class="error-message">予算が少なすぎます。最低199円以上を設定してください。</div>',
-                unsafe_allow_html=True
-            )
-        else:
-            with st.spinner("メニューを選択中..."):
-                selected_items = select_random_menu(
-                    budget, 
-                    menu_items, 
-                    st.session_state.selected_categories
+    col1, col2, col3 = st.columns([1, 1, 1])
+    with col2:
+        if st.button("ガチャを回す", type="primary", key="recommend", use_container_width=False, kwargs={"kind": "recommend"}):
+            if budget < 199:
+                st.markdown(
+                    '<div class="error-message">予算が少なすぎます。最低199円以上を設定してください。</div>',
+                    unsafe_allow_html=True
                 )
+            else:
+                with st.spinner("メニューを選択中..."):
+                    selected_items = select_random_menu(
+                        budget, 
+                        menu_items, 
+                        st.session_state.selected_categories
+                    )
 
-                if selected_items:
-                    total_price = sum(item["price"] for item in selected_items)
-                    st.success(f"予算: {budget}円 中 {total_price}円のメニューを提案します！")
+                    if selected_items:
+                        total_price = sum(item["price"] for item in selected_items)
+                        st.success(f"予算: {budget}円 中 {total_price}円のメニューを提案します！")
 
-                    # 選択されたメニューの表示
-                    for item in selected_items:
-                        st.markdown(
-                            f'''
-                            <div class="menu-card">
-                                <div class="menu-title">{item["name"]}</div>
-                                <div class="menu-price">{item["price"]}円</div>
-                                <div class="menu-description">{item["description"]}</div>
-                            </div>
-                            ''',
-                            unsafe_allow_html=True
-                        )
-                else:
-                    st.error("指定された予算内でメニューを見つけることができませんでした。")
+                        # 選択されたメニューの表示
+                        for item in selected_items:
+                            st.markdown(
+                                f'''
+                                <div class="menu-card">
+                                    <div class="menu-title">{item["name"]}</div>
+                                    <div class="menu-price">{item["price"]}円</div>
+                                    <div class="menu-description">{item["description"]}</div>
+                                </div>
+                                ''',
+                                unsafe_allow_html=True
+                            )
+                    else:
+                        st.error("指定された予算内でメニューを見つけることができませんでした。")
 
     # メニュー一覧の表示
     st.markdown("### 全メニュー一覧")

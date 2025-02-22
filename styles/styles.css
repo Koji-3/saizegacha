@@ -1,3 +1,4 @@
+/* 既存のスタイルはそのまま */
 .st-emotion-cache-t1wise {
     max-width: 800px;
 }
@@ -53,25 +54,31 @@
     opacity: 1 !important;
     transform: scale(1) !important;
     position: relative !important;
-    padding-left: 2rem !important;  /* ✅ チェックアイコンのスペースを確保 */
+    padding-left: 2rem !important;  /* チェックアイコンのスペースを確保 */
 }
 
-/* ✅ 選択状態のボタンにチェックアイコンを追加 */
-.stButton > button[data-testid*="primary"]::before {
-    content: "✔";  /* ✅ チェックマーク（別の記号や画像に変更可能） */
-    font-size: 1rem;  /* ✅ アイコンサイズ */
-    color: white;  /* ✅ アイコンの色（白） */
+/* カテゴリーボタンのチェックアイコン */
+.stButton > button[data-testid*="primary"]:not([kind="recommend"])::before {
+    content: "✔";  /* チェックマーク */
+    font-size: 1rem;
+    color: white;
     position: absolute;
-    left: 0.75rem;  /* ✅ テキストの左に配置 */
+    left: 0.75rem;
     top: 50%;
-    transform: translateY(-50%);  /* ✅ アイコンを垂直中央揃え */
+    transform: translateY(-50%);
     font-weight: bold;
+}
+
+/* ガチャボタンのスタイル（チェックマークなし） */
+.stButton > button[kind="recommend"] {
+    padding-left: 1rem !important;  /* 通常のパディング */
+    min-width: 200px !important;  /* ボタンの最小幅 */
+    text-align: center !important;
 }
 
 /* カテゴリーボタンの非選択状態（secondary） */
 .stButton > button[data-testid*="secondary"] {
     background-color: #ffffff !important;
-    /* opacity: 0.5 !important; */
     color: #2E8B57 !important;
     border: 2px solid #2E8B57 !important;
     transform: scale(0.98) !important;
