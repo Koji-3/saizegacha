@@ -107,7 +107,9 @@
 /* New styles for grid layout */
 .category-button-container {
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(100px, auto));
+    grid-template-columns: repeat(12, 1fr);  /* 12列の固定グリッド */
     gap: 1rem;
     padding: 1rem 0;
+    overflow-x: auto;  /* 横スクロールを可能に */
+    white-space: nowrap;
 }
