@@ -17,12 +17,10 @@
     font-weight: bold !important;
     border: none !important;
     padding: 0.5rem 1rem !important;
-    width: auto !important;
     min-width: fit-content !important;
     transition: all 0.1s ease-out !important;
     position: relative !important;
     overflow: hidden !important;
-    white-space: nowrap !important;
 }
 
 /* カテゴリーボタンの選択状態（primary） */
