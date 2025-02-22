@@ -12,18 +12,27 @@
     gap: 0.5rem;
 }
 
+/* カテゴリーボタンコンテナのスタイル */
+.category-button-container {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(120px, 1fr));
+    gap: 0.5rem;
+    padding: 1rem 0;
+    width: 100%;
+}
+
 /* すべてのボタンの基本スタイル */
 .stButton > button {
     font-weight: bold !important;
     border: none !important;
     padding: 0.5rem 1rem !important;
-    width: auto !important;
+    width: 100% !important;
     min-width: auto !important;
     transition: all 0.1s ease-out !important;
     position: relative !important;
     overflow: hidden !important;
     white-space: nowrap !important;
-    margin: 0 !important; /* Added to remove default margin */
+    margin: 0 !important;
 }
 
 /* カテゴリーボタンの選択状態（primary） */
@@ -54,7 +63,6 @@
     transition: all 0.05s ease-out !important;
 }
 
-/* メニューカードのスタイル */
 .menu-card {
     background-color: #FFFFFF;
     padding: 1.5rem;
@@ -99,17 +107,6 @@
     border: 1px solid #E60012;
 }
 
-/* データフレームのスタイル */
 .dataframe {
     border: 1px solid #E60012 !important;
-}
-
-/* New styles for grid layout */
-.category-button-container {
-    display: grid;
-    grid-template-columns: repeat(12, 1fr);  /* 12列の固定グリッド */
-    gap: 1rem;
-    padding: 1rem 0;
-    overflow-x: auto;  /* 横スクロールを可能に */
-    white-space: nowrap;
 }
