@@ -6,7 +6,7 @@ from pathlib import Path
 
 # ページの設定
 st.set_page_config(
-    page_title="サイゼリヤ メニュー推薦",
+    page_title="サイゼリヤ ガチャ",
     page_icon="🍝",
     layout="wide"
 )
@@ -92,7 +92,7 @@ def main():
     st.markdown(f"<style>{load_css()}</style>", unsafe_allow_html=True)
 
     # ヘッダー
-    st.markdown('<h1 class="main-header">サイゼリヤ メニュー推薦</h1>', unsafe_allow_html=True)
+    st.markdown('<h1 class="main-header">サイゼリヤ メニューガチャ</h1>', unsafe_allow_html=True)
 
     # カテゴリー選択の初期化
     if 'selected_categories' not in st.session_state:
@@ -132,7 +132,7 @@ def main():
     )
 
     # 推薦ボタン
-    if st.button("メニューを推薦する", type="primary"):
+    if st.button("ガチャを回す", type="primary", key="recommend"):
         if budget < 199:
             st.markdown(
                 '<div class="error-message">予算が少なすぎます。最低199円以上を設定してください。</div>',
