@@ -7,9 +7,14 @@
     text-shadow: 1px 1px 2px rgba(0,0,0,0.1);
 }
 
-.category-tags {
-    margin: 1rem 0;
-    gap: 0.5rem;
+.stHorizontalBlock {
+    gap: 0.5rem !important;
+    padding: 0.5rem 0 !important;
+}
+
+.stHorizontalBlock > div {
+    flex: 1 1 0 !important;
+    min-width: 0 !important;
 }
 
 /* すべてのボタンの基本スタイル */
