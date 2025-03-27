@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>サイゼリヤ ガチャ</title>
+    <link rel="stylesheet" href="styles.css">
+    <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>🍝</text></svg>">
+</head>
+<body>
+    <div class="container">
+        <h1 class="main-header">サイゼリヤ メニューガチャ</h1>
+        
+        <div class="section">
+            <h3>カテゴリーで絞り込む</h3>
+            <div id="category-buttons" class="category-button-container">
+                <!-- カテゴリーボタンがJavaScriptで動的に生成されます -->
+            </div>
+        </div>
+        
+        <div class="section">
+            <h3>予算を入力してください</h3>
+            <div class="budget-input">
+                <input type="number" id="budget" min="0" max="10000" value="1000" step="100">
+                <button id="gacha-button" class="gacha-button">ガチャを回す</button>
+            </div>
+        </div>
+        
+        <div id="error-message" class="error-message" style="display: none;">
+            予算が少なすぎます。最低199円以上を設定してください。
+        </div>
+        
+        <div id="result-container" style="display: none;">
+            <div id="result-message" class="result-message"></div>
+            <div id="selected-menu-container"></div>
+        </div>
+        
+        <div class="section">
+            <h3>全メニュー一覧</h3>
+            <div class="table-container">
+                <table id="menu-table">
+                    <thead>
+                        <tr>
+                            <th>注文番号</th>
+                            <th>メニュー名</th>
+                            <th>価格</th>
+                            <th>カテゴリー</th>
+                            <th>説明</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <!-- テーブルの内容はJavaScriptで動的に生成されます -->
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+    
+    <div id="loading-spinner" class="loading-spinner" style="display: none;">
+        <div class="spinner"></div>
+        <p>メニューを選択中...</p>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>
