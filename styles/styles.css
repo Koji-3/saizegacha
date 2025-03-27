@@ -90,6 +90,16 @@
     transition: all 0.05s ease-out !important;
 }
 
+/* ガチャボタンの選択状態（tertiary） */
+.stButton > button[data-testid*="tertiary"] {
+    background-color: #2E8B57 !important;
+    color: white !important;
+    opacity: 1 !important;
+    transform: scale(1) !important;
+    position: relative !important;
+    width: 100% !important;
+}
+
 .menu-card {
     background-color: #FFFFFF;
     padding: 1.5rem;

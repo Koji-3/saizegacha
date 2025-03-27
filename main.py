@@ -132,7 +132,7 @@ def main():
     )
 
     # 推薦ボタン
-    if st.button("ガチャを回す", type="primary", key="recommend"):
+    if st.button("ガチャを回す", type="tertiary"):
         if budget < 199:
             st.markdown(
                 '<div class="error-message">予算が少なすぎます。最低199円以上を設定してください。</div>',
