@@ -1,0 +1,787 @@
+{
+  "menu_items": [
+    {
+      "id": 1202,
+      "name": "小エビのサラダ",
+      "price": 350,
+      "category": "サラダ",
+      "description": "たっぷり入った甘工ビとドレッシングがよく合います。",
+      "calorie": 198,
+      "salt": 1.5
+    },
+    {
+      "id": 1205,
+      "name": "わかめのサラダ",
+      "price": 350,
+      "category": "サラダ",
+      "description": "肉厚で、歯ごたえのあるわかめです。",
+      "calorie": 172,
+      "salt": 1.0
+    },
+    {
+      "id": 1209,
+      "name": "チキンのサラダ",
+      "price": 350,
+      "category": "サラダ",
+      "description": "しっとり柔らかく仕上げた蒸し鶏です。",
+      "calorie": 237,
+      "salt": 1.5
+    },
+    {
+      "id": 1301,
+      "name": "コーンクリームスープ",
+      "price": 150,
+      "category": "スープ",
+      "description": "スーパースイートコーンと良質なミルクがたっぷりです。",
+      "calorie": 159,
+      "salt": 1.0
+    },
+    {
+      "id": 1305,
+      "name": "田舎風ミネストローネ",
+      "price": 300,
+      "category": "スープ",
+      "description": "旬な野菜を使った、イタリア家庭の素朴な味わいです。",
+      "calorie": 179,
+      "salt": 2.3
+    },
+    {
+      "id": 1307,
+      "name": "たまねぎのズッパ",
+      "price": 300,
+      "category": "スープ",
+      "description": "たまねぎの甘みたっぷりオニオングラタンスープ。チーズとバンのとろける食感が絶妙です。",
+      "calorie": 248,
+      "salt": 2.5
+    },
+    {
+      "id": 1401,
+      "name": "辛味チキン",
+      "price": 300,
+      "category": "サイドメニュー",
+      "description": "柔らか、ジューシーにオーブンで焼き上げました。",
+      "calorie": 295,
+      "salt": 1.8
+    },
+    {
+      "id": 1402,
+      "name": "アロスティチーニ（ラムの串焼き）",
+      "price": 400,
+      "category": "サイドメニュー",
+      "description": "イタリアの伝統的なラム（仔羊）の串焼き。",
+      "calorie": 224,
+      "salt": 0.7
+    },
+    {
+      "id": 1403,
+      "name": "ほうれん草のソテー",
+      "price": 200,
+      "category": "サイドメニュー",
+      "description": "栄養たっぷり。ほうれん草を気軽に楽しめます。",
+      "calorie": 223,
+      "salt": 1.3
+    },
+    {
+      "id": 1404,
+      "name": "ポップコーンシュリンプ",
+      "price": 300,
+      "category": "サイドメニュー",
+      "description": "気軽に食べられる一口サイズのエビフライ。",
+      "calorie": 234,
+      "salt": 1.2
+    },
+    {
+      "id": 1405,
+      "name": "エスカルゴのオーブン焼き",
+      "price": 400,
+      "category": "サイドメニュー",
+      "description": "発酵バターの香りと深みのある味わい。ぜひ、ご賞味ください。",
+      "calorie": 220,
+      "salt": 1.4
+    },
+    {
+      "id": 1406,
+      "name": "小エビのカクテル",
+      "price": 280,
+      "category": "サイドメニュー",
+      "description": "天然の甘エビを軽くボイルして仕上げています。",
+      "calorie": 125,
+      "salt": 1.4
+    },
+    {
+      "id": 1407,
+      "name": "チョリソー",
+      "price": 400,
+      "category": "サイドメニュー",
+      "description": "パリッと食感と、後引く辛味。",
+      "calorie": 303,
+      "salt": 0.1
+    },
+    {
+      "id": 1408,
+      "name": "蒸し鶏の香味ソース",
+      "price": 280,
+      "category": "サイドメニュー",
+      "description": "しっとり仕上げた蒸し鶏のね肉です。",
+      "calorie": 152,
+      "salt": 1.3
+    },
+    {
+      "id": 1410,
+      "name": "ムール貝のガーリック焼き",
+      "price": 400,
+      "category": "サイドメニュー",
+      "description": "身入りの良いムール貝を使用。野菜ソースが良く合います。",
+      "calorie": 281,
+      "salt": 1.8
+    },
+    {
+      "id": 1413,
+      "name": "キャロットラペ",
+      "price": 200,
+      "category": "サイドメニュー",
+      "description": "彩り鮮やか、爽やかなオレンジ風味。",
+      "calorie": 92,
+      "salt": 0.7
+    },
+    {
+      "id": 1415,
+      "name": "カリッとポテト",
+      "price": 280,
+      "category": "サイドメニュー",
+      "description": "オリーブオイルでこんがり焼いて。",
+      "calorie": 371,
+      "salt": 1.9
+    },
+    {
+      "id": 1417,
+      "name": "バッファローモッツァレラのカプレーゼ",
+      "price": 430,
+      "category": "サイドメニュー",
+      "description": "ミルキーな風味とコクが格別です。",
+      "calorie": 254,
+      "salt": 0.4
+    },
+    {
+      "id": 1422,
+      "name": "ハモン・セラーノ",
+      "price": 320,
+      "category": "サイドメニュー",
+      "description": null,
+      "calorie": 36,
+      "salt": 0.9
+    },
+    {
+      "id": 1423,
+      "name": "生ハムとバッファローモッツァレラの盛合せ",
+      "price": 500,
+      "category": "サイドメニュー",
+      "description": "一緒に食べるとおいしいコンビ。",
+      "calorie": 146,
+      "salt": 1.0
+    },
+    {
+      "id": 1425,
+      "name": "柔らか青豆の温サラダ",
+      "price": 200,
+      "category": "サイドメニュー",
+      "description": "青豆の自然な甘みが感じられます。",
+      "calorie": 192,
+      "salt": 0.8
+    },
+    {
+      "id": 1435,
+      "name": "スイートコーン",
+      "price": 200,
+      "category": "サイドメニュー",
+      "description": "こだわりの甘さと柔らかさ。",
+      "calorie": 134,
+      "salt": 0.5
+    },
+    {
+      "id": 1452,
+      "name": "アロスティチーニ Wサイズ",
+      "price": 800,
+      "category": "サイドメニュー",
+      "description": "アロスティチーニのWサイズ。ボリュームたっぷりのラム串焼き。",
+      "calorie": null,
+      "salt": null
+    },
+    {
+      "id": 2101,
+      "name": "ミラノ風ドリア",
+      "price": 300,
+      "category": "ドリア",
+      "description": "サイゼリヤ発祥の自慢の逸品です。",
+      "calorie": 521,
+      "salt": 2.5
+    },
+    {
+      "id": 2103,
+      "name": "半熟卵のミラノ風ドリア",
+      "price": 350,
+      "category": "ドリア",
+      "description": "半熟卵でまろやかに。",
+      "calorie": 604,
+      "salt": 2.8
+    },
+    {
+      "id": 2106,
+      "name": "タラコとエビのドリア",
+      "price": 400,
+      "category": "ドリア",
+      "description": "自家製ホワイトソースとタラコソースは、人気の組み合わせです。",
+      "calorie": 578,
+      "salt": 2.8
+    },
+    {
+      "id": 2108,
+      "name": "焼チーズ ミラノ風ドリア",
+      "price": 350,
+      "category": "ドリア",
+      "description": "チーズの香ばしさでコク味UP。",
+      "calorie": 662,
+      "salt": 3.2
+    },
+    {
+      "id": 2109,
+      "name": "エビとタラコのクリームグラタン（全粒粉）",
+      "price": 430,
+      "category": "ドリア",
+      "description": "魚介と相性の良い自家製ホワイトソースをグラタンでも。",
+      "calorie": 559,
+      "salt": 2.5
+    },
+    {
+      "id": 2203,
+      "name": "バッファローモッツァレラのマルゲリータピザ",
+      "price": 400,
+      "category": "ピザ",
+      "description": "イタリア直輸入のバッファローモッツァレラのミルキーなコクと香りが楽しめます。",
+      "calorie": 544,
+      "salt": 2.4
+    },
+    {
+      "id": 2204,
+      "name": "野菜ときのこのピザ",
+      "price": 400,
+      "category": "ピザ",
+      "description": "3種のきのこと野菜ソース。香りよく焼き上げます。",
+      "calorie": 593,
+      "salt": 3.2
+    },
+    {
+      "id": 2206,
+      "name": "たっぷりコーンのピザ",
+      "price": 400,
+      "category": "ピザ",
+      "description": "スーパースイートコーンを厳選して使用しています。",
+      "calorie": 551,
+      "salt": 2.7
+    },
+    {
+      "id": 2208,
+      "name": "ソーセージピザ",
+      "price": 400,
+      "category": "ピザ",
+      "description": "旨みあふれるソーセージをたっぷりと。",
+      "calorie": 710,
+      "salt": 4.1
+    },
+    {
+      "id": 2301,
+      "name": "タラコソースシシリー風",
+      "price": 400,
+      "category": "パスタ",
+      "description": "タラコの旨みと生クリームの風味でおいしく食べられます。",
+      "calorie": 553,
+      "salt": 2.2
+    },
+    {
+      "id": 2303,
+      "name": "ペペロンチーノ",
+      "price": 300,
+      "category": "パスタ",
+      "description": "ニンニクの上品な旨みと程良い辛味があります。",
+      "calorie": 583,
+      "salt": 2.3
+    },
+    {
+      "id": 2304,
+      "name": "パルマ風スパゲティ",
+      "price": 400,
+      "category": "パスタ",
+      "description": "パンチェッタ入りシンプルなトマトソースです。",
+      "calorie": 798,
+      "salt": 3.6
+    },
+    {
+      "id": 2305,
+      "name": "カルボナーラ",
+      "price": 500,
+      "category": "パスタ",
+      "description": "半熟卵を絡めて。軽く、クリーミーでまろやかな味わい。",
+      "calorie": 770,
+      "salt": 2.9
+    },
+    {
+      "id": 2306,
+      "name": "ミートソースボロニア風",
+      "price": 400,
+      "category": "パスタ",
+      "description": "ジューシーな牛肉の旨みを生かしています。",
+      "calorie": 584,
+      "salt": 3.0
+    },
+    {
+      "id": 2310,
+      "name": "スープ入り塩味ボンゴレ",
+      "price": 500,
+      "category": "パスタ",
+      "description": "身のふっくらしたあさりを使用しています。",
+      "calorie": 748,
+      "salt": 2.7
+    },
+    {
+      "id": 2316,
+      "name": "半熟卵のミートソースボロニア風",
+      "price": 450,
+      "category": "パスタ",
+      "description": "半熟卵でまろやかな味わいに。",
+      "calorie": 681,
+      "salt": 3.2
+    },
+    {
+      "id": 2317,
+      "name": "半熟卵のペペロンチーノ",
+      "price": 350,
+      "category": "パスタ",
+      "description": "半熟卵でマイルドな味わいに。",
+      "calorie": 666,
+      "salt": 2.5
+    },
+    {
+      "id": 2320,
+      "name": "小エビのタラコソース",
+      "price": 540,
+      "category": "パスタ",
+      "description": "人気のタラコソースに甘エビをたっぷりトッピング。",
+      "calorie": 594,
+      "salt": 2.8
+    },
+    {
+      "id": 2321,
+      "name": "きのことほうれん草のクリームスパゲッティ",
+      "price": 600,
+      "category": "パスタ",
+      "description": "ホワイトソースが3種のきのこの香りを引き立てます。",
+      "calorie": 846,
+      "salt": 4.0
+    },
+    {
+      "id": 2325,
+      "name": "ペンネアラビアータ（全粒粉）",
+      "price": 430,
+      "category": "パスタ",
+      "description": "食物繊維やビタミンが豊富な全粒粉ペンネを使用しています。",
+      "calorie": 492,
+      "salt": 2.8
+    },
+    {
+      "id": 2328,
+      "name": "イカの墨入りセピアソース",
+      "price": 500,
+      "category": "パスタ",
+      "description": "イカ墨本来のセピア色のソースで、絶妙なコクがあります。",
+      "calorie": 597,
+      "salt": 1.9
+    },
+    {
+      "id": 2402,
+      "name": "若鶏のディアボラ風",
+      "price": 500,
+      "category": "肉メイン",
+      "description": "こんがり、ジューシーに焼き上げています。",
+      "calorie": 654,
+      "salt": 2.7
+    },
+    {
+      "id": 2403,
+      "name": "イタリアンハンバーグ",
+      "price": 500,
+      "category": "肉メイン",
+      "description": "まろやかなチーズとトマトの甘みを引き立てます。",
+      "calorie": 751,
+      "salt": 3.6
+    },
+    {
+      "id": 2404,
+      "name": "柔らかチキンのチーズ焼き",
+      "price": 500,
+      "category": "肉メイン",
+      "description": "トマトの酸味と、とろけるチーズの組み合わせが魅力。",
+      "calorie": 753,
+      "salt": 3.4
+    },
+    {
+      "id": 2406,
+      "name": "ハンバーグステーキ",
+      "price": 400,
+      "category": "肉メイン",
+      "description": "新鮮な赤身肉の味わいが楽しめます。",
+      "calorie": 603,
+      "salt": 2.9
+    },
+    {
+      "id": 2407,
+      "name": "ディアボラ風ハンバーグ",
+      "price": 500,
+      "category": "肉メイン",
+      "description": "たまねぎベースの野菜と、醤油ベースのソースであっさりと。",
+      "calorie": 658,
+      "salt": 3.2
+    },
+    {
+      "id": 2413,
+      "name": "ラムと野菜のグリル",
+      "price": 870,
+      "category": "肉メイン",
+      "description": "独自製法で柔らかく、甘辛い味に仕上げました。",
+      "calorie": 448,
+      "salt": 4.3
+    },
+    {
+      "id": 2418,
+      "name": "ミックスグリル",
+      "price": 650,
+      "category": "肉メイン",
+      "description": "大人気の3つの鉄板料理が一度に楽しめる贅沢な組み合わせ。",
+      "calorie": 761,
+      "salt": 4.1
+    },
+    {
+      "id": 3101,
+      "name": "ライス",
+      "price": 150,
+      "category": "ライス",
+      "description": null,
+      "calorie": 303,
+      "salt": 0.0
+    },
+    {
+      "id": 3102,
+      "name": "ラージライス",
+      "price": 200,
+      "category": "ライス",
+      "description": null,
+      "calorie": null,
+      "salt": null
+    },
+    {
+      "id": 3103,
+      "name": "スモールライス",
+      "price": 100,
+      "category": "ライス",
+      "description": null,
+      "calorie": null,
+      "salt": null
+    },
+    {
+      "id": 3110,
+      "name": "フォッカチオ",
+      "price": 150,
+      "category": "パン",
+      "description": "もっちり食感の素朴な味わい。",
+      "calorie": 199,
+      "salt": 0.7
+    },
+    {
+      "id": 3111,
+      "name": "ガーリックフォッカチオ",
+      "price": 200,
+      "category": "パン",
+      "description": "食欲をそそるガーリックの香り。",
+      "calorie": 255,
+      "salt": 0.8
+    },
+    {
+      "id": 3112,
+      "name": "シナモンフォッカチオ",
+      "price": 200,
+      "category": "パン",
+      "description": "シナモンシュガーのやさしい甘み。",
+      "calorie": 273,
+      "salt": 0.6
+    },
+    {
+      "id": 3201,
+      "name": "ティラミスクラシコ",
+      "price": 300,
+      "category": "デザート",
+      "description": "マスカルポーネとサボイアルディ（ビスケット）を使った伝統レシピ。",
+      "calorie": 229,
+      "salt": 0.1
+    },
+    {
+      "id": 3205,
+      "name": "ミルクジェラート",
+      "price": 250,
+      "category": "デザート",
+      "description": "良質なミルクの濃厚な味わい。",
+      "calorie": 121,
+      "salt": 0.1
+    },
+    {
+      "id": 3206,
+      "name": "イタリアンプリン",
+      "price": 250,
+      "category": "デザート",
+      "description": "ミルクと卵の濃厚な味わいに、カラメルの香ばしさが良く合います。",
+      "calorie": 216,
+      "salt": 0.1
+    },
+    {
+      "id": 3207,
+      "name": "チョコレートケーキ",
+      "price": 300,
+      "category": "デザート",
+      "description": "特製ガナッシュを使用した、オリジナルレシピ。",
+      "calorie": 166,
+      "salt": 0.1
+    },
+    {
+      "id": 3212,
+      "name": "プリンとティラミスクラシコの盛合せ",
+      "price": 500,
+      "category": "デザート",
+      "description": "人気のデザートをお得にどうぞ。",
+      "calorie": 452,
+      "salt": 0.3
+    },
+    {
+      "id": 3213,
+      "name": "トリフアイスクリーム",
+      "price": 350,
+      "category": "デザート",
+      "description": "厳選したカカオ＆ヘーゼルナッツ。",
+      "calorie": 164,
+      "salt": 0.1
+    },
+    {
+      "id": 3214,
+      "name": "ジェラート＆シナモンフォッカチオ",
+      "price": 450,
+      "category": "デザート",
+      "description": "相性抜群コンビのあったか冷たいデザート。",
+      "calorie": 352,
+      "salt": 0.8
+    },
+    {
+      "id": 3215,
+      "name": "コーヒーゼリー＆ミルクジェラート",
+      "price": 350,
+      "category": "デザート",
+      "description": "甘みとほろ苦さをお好みのバランスで。",
+      "calorie": 173,
+      "salt": 0.1
+    },
+    {
+      "id": 3301,
+      "name": "ジョッキ生ビール",
+      "price": 400,
+      "category": "お酒",
+      "description": "生ビール キリン一番搾り（ジョッキ）。",
+      "calorie": null,
+      "salt": null
+    },
+    {
+      "id": 3302,
+      "name": "グラスビール",
+      "price": 280,
+      "category": "お酒",
+      "description": "生ビール キリン一番搾り（グラス）。",
+      "calorie": null,
+      "salt": null
+    },
+    {
+      "id": 3303,
+      "name": "アサヒ ドライゼロ",
+      "price": 250,
+      "category": "お酒",
+      "description": "ノンアルコールビール。カロリーゼロ / 糖質ゼロ。",
+      "calorie": null,
+      "salt": null
+    },
+    {
+      "id": 3304,
+      "name": "キリン 氷結 シチリア産レモン",
+      "price": 350,
+      "category": "お酒",
+      "description": "みずみずしく爽快なおいしさのサワー。",
+      "calorie": null,
+      "salt": null
+    },
+    {
+      "id": 3306,
+      "name": "グラッパ（30ml）",
+      "price": 300,
+      "category": "お酒",
+      "description": "驚き！食後酒 イタリアのぶどうの蒸留酒（アルコール分40%）。",
+      "calorie": null,
+      "salt": null
+    },
+    {
+      "id": 3401,
+      "name": "グラスワイン（赤）",
+      "price": 100,
+      "category": "お酒",
+      "description": "120mlの赤ワイン",
+      "calorie": null,
+      "salt": null
+    },
+    {
+      "id": 3402,
+      "name": "グラスワイン（白）",
+      "price": 100,
+      "category": "お酒",
+      "description": "120mlの白ワイン",
+      "calorie": null,
+      "salt": null
+    },
+    {
+      "id": 3403,
+      "name": "デカンタ（赤・250ml）",
+      "price": 200,
+      "category": "お酒",
+      "description": "250mlの赤ワイン",
+      "calorie": null,
+      "salt": null
+    },
+    {
+      "id": 3404,
+      "name": "デカンタ（白・250ml）",
+      "price": 200,
+      "category": "お酒",
+      "description": "250mlの白ワイン",
+      "calorie": null,
+      "salt": null
+    },
+    {
+      "id": 3405,
+      "name": "デカンタ（赤・500ml）",
+      "price": 400,
+      "category": "お酒",
+      "description": "500mlの赤ワイン",
+      "calorie": null,
+      "salt": null
+    },
+    {
+      "id": 3406,
+      "name": "デカンタ（白・500ml）",
+      "price": 400,
+      "category": "お酒",
+      "description": "500mlの白ワイン",
+      "calorie": null,
+      "salt": null
+    },
+    {
+      "id": 3407,
+      "name": "マグナム（赤・1500ml）",
+      "price": 1100,
+      "category": "お酒",
+      "description": "1500mlの赤ワイン",
+      "calorie": null,
+      "salt": null
+    },
+    {
+      "id": 3408,
+      "name": "マグナム（白・1500ml）",
+      "price": 1100,
+      "category": "お酒",
+      "description": "1500mlの白ワイン",
+      "calorie": null,
+      "salt": null
+    },
+    {
+      "id": 3412,
+      "name": "ランブルスコロゼ",
+      "price": 1100,
+      "category": "お酒",
+      "description": "ロゼ・発泡 / 甘口 白ぶどう由来の甘さ。",
+      "calorie": null,
+      "salt": null
+    },
+    {
+      "id": 3413,
+      "name": "ドンラファエロ",
+      "price": 1100,
+      "category": "お酒",
+      "description": "白・発泡 / 辛口 すっきりした味わい。",
+      "calorie": null,
+      "salt": null
+    },
+    {
+      "id": 3414,
+      "name": "ランブルスコセッコ",
+      "price": 1100,
+      "category": "お酒",
+      "description": "赤・発泡 / 辛口 しっかりとした味わい。",
+      "calorie": null,
+      "salt": null
+    },
+    {
+      "id": 3415,
+      "name": "ベルデッキオ",
+      "price": 1100,
+      "category": "お酒",
+      "description": "白 / 辛口 フルーティで爽やかな味わい。",
+      "calorie": null,
+      "salt": null
+    },
+    {
+      "id": 3416,
+      "name": "キャンティ",
+      "price": 1100,
+      "category": "お酒",
+      "description": "赤 / 辛口 イタリアの代表的なワイン。",
+      "calorie": null,
+      "salt": null
+    },
+    {
+      "id": 3419,
+      "name": "キャンティルフィナリゼルバ",
+      "price": 2200,
+      "category": "お酒",
+      "description": "赤 / 辛口 大樽で3年熟成のワイン。",
+      "calorie": null,
+      "salt": null
+    },
+    {
+      "id": 4301,
+      "name": "トッピング半熟卵",
+      "price": 50,
+      "category": "トッピング",
+      "description": "濃厚でとろっとした半熟卵。",
+      "calorie": 83,
+      "salt": 0.2
+    },
+    {
+      "id": 4304,
+      "name": "トッピング野菜ソース",
+      "price": 100,
+      "category": "トッピング",
+      "description": "醤油ベースで野菜の旨みが詰まったソース。",
+      "calorie": 72,
+      "salt": 0.3
+    },
+    {
+      "id": 4307,
+      "name": "トッピング粉チーズ",
+      "price": 100,
+      "category": "トッピング",
+      "description": "スパゲッティやサラダにおすすめの粉チーズ。",
+      "calorie": 91,
+      "salt": 0.5
+    }
+  ]
+}

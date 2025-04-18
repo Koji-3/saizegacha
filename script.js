@@ -15,7 +15,7 @@ document.addEventListener('DOMContentLoaded', async () => {
 // メニューデータの読み込み
 async function loadMenuData() {
     try {
-        const response = await fetch('data/menu.json');
+        const response = await fetch('data/menu_with_nutrition_filled.json');
         const data = await response.json();
         
         // 重複を除去（同じ名前のメニューは最新のものを保持）
@@ -48,7 +48,7 @@ function setupEventListeners() {
     });
 }
 
-// カテゴリーボタンの描画
+// カテゴリボタンの描画
 function renderCategoryButtons() {
     const container = document.getElementById('category-buttons');
     container.innerHTML = '';
@@ -69,7 +69,7 @@ function renderCategoryButtons() {
     });
 }
 
-// カテゴリーの選択を切り替える
+// カテゴリの選択を切り替える
 function toggleCategory(category) {
     if (selectedCategories.has(category)) {
         selectedCategories.delete(category);
@@ -86,31 +86,46 @@ function renderMenuTable() {
     const tbody = document.querySelector('#menu-table tbody');
     tbody.innerHTML = '';
     
-    // 選択されたカテゴリーに属するメニューのみをフィルタリング
+    // 選択されたカテゴリに属するメニューのみをフィルタリング
     const filteredItems = menuItems.filter(item => selectedCategories.has(item.category));
     
     filteredItems.forEach(item => {
         const tr = document.createElement('tr');
         
         const idTd = document.createElement('td');
+        idTd.className = 'menu-id';
         idTd.textContent = item.id;
-        tr.appendChild(idTd);
+        tr.appendChild(idTd);        
         
         const nameTd = document.createElement('td');
+        nameTd.className = 'menu-name';
         nameTd.textContent = item.name;
         tr.appendChild(nameTd);
         
         const priceTd = document.createElement('td');
+        nameTd.className = 'menu-price';
         priceTd.textContent = `${item.price}円`;
         tr.appendChild(priceTd);
         
         const categoryTd = document.createElement('td');
+        categoryTd.className = 'menu-category';
         categoryTd.textContent = item.category;
         tr.appendChild(categoryTd);
         
         const descTd = document.createElement('td');
+        descTd.className = 'menu-description';
         descTd.textContent = item.description || '';
         tr.appendChild(descTd);
+        
+        const calorieTd = document.createElement('td');
+        calorieTd.className = 'menu-calorie';
+        calorieTd.textContent = item.calorie !== null ? `${item.calorie} kcal` : '―';
+        tr.appendChild(calorieTd);
+
+        const saltTd = document.createElement('td');
+        saltTd.className = 'menu-salt';
+        saltTd.textContent = item.salt !== null ? `${item.salt} g` : '―';
+        tr.appendChild(saltTd);
         
         tbody.appendChild(tr);
     });
@@ -139,9 +154,13 @@ function runGacha(budget) {
         
         if (selectedItems && selectedItems.length > 0) {
             const totalPrice = selectedItems.reduce((sum, item) => sum + item.price, 0);
-            
+            const totalCalorie = selectedItems.reduce((sum, item) => sum + (item.calorie || 0), 0);
+            const totalSalt = selectedItems.reduce((sum, item) => sum + (item.salt || 0), 0);
+
             // 結果メッセージの表示
-            document.getElementById('result-message').textContent = `予算: ${budget}円 中 ${totalPrice}円のメニューを提案します！`;
+            document.getElementById('result-message').textContent =
+            `ご予算 ${budget}円 で、合計 ${totalPrice}円 のメニューを提案します！` +
+            `（カロリー: ${totalCalorie} kcal ／ 塩分: ${totalSalt.toFixed(1)} g）`;
             document.getElementById('result-container').style.display = 'block';
             
             // 選択されたメニューの表示
@@ -154,7 +173,12 @@ function runGacha(budget) {
                 menuTitle.className = 'menu-title';
                 menuTitle.textContent = item.name;
                 menuCard.appendChild(menuTitle);
-                
+
+                const menuId = document.createElement('div');
+                menuId.className = 'menu-id';
+                menuId.textContent = `注文番号: ${item.id}`;
+                menuCard.appendChild(menuId);
+
                 const menuPrice = document.createElement('div');
                 menuPrice.className = 'menu-price';
                 menuPrice.textContent = `${item.price}円`;
@@ -164,7 +188,17 @@ function runGacha(budget) {
                 menuDesc.className = 'menu-description';
                 menuDesc.textContent = item.description || '';
                 menuCard.appendChild(menuDesc);
-                
+
+                const menuCalorie = document.createElement('div');
+                menuCalorie.className = 'menu-calorie';
+                menuCalorie.textContent = item.calorie !== null ? `カロリー: ${item.calorie} kcal` : 'カロリー: ―';
+                menuCard.appendChild(menuCalorie);
+
+                const menuSalt = document.createElement('div');
+                menuSalt.className = 'menu-salt';
+                menuSalt.textContent = item.salt !== null ? `塩分: ${item.salt} g` : '塩分: ―';
+                menuCard.appendChild(menuSalt);
+
                 menuContainer.appendChild(menuCard);
             });
         } else {
@@ -178,7 +212,7 @@ function runGacha(budget) {
 
 // 予算内のメニューをランダムに選択
 function selectRandomMenu(budget) {
-    // 選択されたカテゴリーに属するメニューのみをフィルタリング
+    // 選択されたカテゴリに属するメニューのみをフィルタリング
     const filteredItems = menuItems.filter(item => selectedCategories.has(item.category));
     
     // 予算内で購入可能なメニューをフィルタリング

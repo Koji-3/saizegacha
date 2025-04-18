@@ -36,7 +36,7 @@ h3 {
     color: #555;
 }
 
-/* カテゴリーボタンコンテナのスタイル */
+/* カテゴリボタンコンテナのスタイル */
 .category-button-container {
     display: grid;
     grid-template-columns: repeat(auto-fill, minmax(120px, 1fr));
@@ -45,7 +45,7 @@ h3 {
     width: 100%;
 }
 
-/* カテゴリーボタンのスタイル */
+/* カテゴリボタンのスタイル */
 .category-button {
     font-weight: bold;
     border: none;
@@ -185,6 +185,13 @@ input[type="number"] {
     line-height: 1.4;
 }
 
+.menu-calorie,
+.menu-salt {
+  font-size: 0.9em;
+  color: #666;
+  margin-top: 4px;
+}
+
 /* テーブルスタイル */
 .table-container {
     overflow-x: auto;
@@ -211,6 +218,44 @@ th {
 tr:hover {
     background-color: #f5f5f5;
 }
+
+/* テーブルを横スクロール対応に */
+.table-container {
+overflow-x: auto;
+width: 100%;
+}
+
+/* テーブル本体のスタイル（あればまとめて調整） */
+#menu-table {
+width: max-content; /* 内容に応じて横に広がる */
+border-collapse: collapse;
+}
+
+/* メニューテーブルの改行防止 */
+#menu-table td.menu-id,
+#menu-table td.menu-price,
+#menu-table td.menu-category,
+#menu-table td.menu-calorie,
+#menu-table td.menu-salt,
+#menu-table th,
+#menu-table td:not(.menu-name):not(.menu-description) {
+  white-space: nowrap;
+}
+
+/* メニュー名の列の横幅指定 */
+#menu-table td.menu-name {
+  max-width: 100px;        /* 必要に応じて調整 */
+  white-space: normal;     /* 折り返しを許可 */
+  word-break: break-word;  /* 単語の途中でも折り返し可 */
+} 
+
+/* 説明の列の横幅指定 */
+#menu-table td.menu-description {
+  max-width: 280px;        /* 必要に応じて調整 */
+  white-space: normal;     /* 折り返しを許可 */
+  word-break: break-word;  /* 単語の途中でも折り返し可 */
+}
+
 
 /* ローディングスピナー */
 .loading-spinner {
